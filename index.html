@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="track"></div>
+    <div class="track track-2"></div>
+    <div class="flag"></div>
+    
+    <div class="container">
+        <div class="card">
+            <!-- F1 Logo -->
+            <div class="f1-logo">
+                <div class="f1-text">F1</div>
+                <div class="f1-logo">
+                        <img src="f1_logo_red.svg" alt="F1 Logo" class="f1-logo-img">
+                </div>
+            </div>
+            
+            <div class="header">
+                <h1>Secure Access</h1>
+                <p>Please verify your identity to continue</p>
+            </div>
+            
+            <form id="nameForm" class="form">
+                <div class="input-group">
+                    <label for="nameInput">Enter Your First Name</label>
+                    <input type="text" id="nameInput" placeholder="Type your name" required>
+                </div>
+                <button type="submit" class="submit-btn">
+                    Verify & Continue
+                    <div class="btn-stripe"></div>
+                </button>
+            </form>
+            
+            <div class="footer">
+                <p>Special personnel only</p>
+                <div class="security-indicator">
+                    <div class="dot"></div>
+                    <span>System Secure</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

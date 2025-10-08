@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Message</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="track"></div>
+    <div class="track track-2"></div>
+    <div class="flag"></div>
+    
+    <!-- Audio element (hidden) -->
+    <audio id="birthdayMusic" loop>
+        <source src="SEVENTEEN 'HBD'.mp3" type="audio/mp3">
+        <source src="birthday-music.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div class="container">
+        <div class="card message-card">
+            <!-- F1 Logo -->
+            <div class="f1-logo">
+                <div class="f1-text">F1</div>
+                <div class="racing-stripes">
+                    <div class="stripe red"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe red"></div>
+                </div>
+            </div>
+            
+            <div class="header">
+                <h1>Happy Birthday! 🎂</h1>
+                <p id="currentDate"></p>
+            </div>
+            
+            <div class="message-content">
+                <div class="message-text">
+                    <p>Happy Birthday Angela! 🎂🥳🎉</p>
+                    <p>Wishing you a wonderful day filled with joy and happiness. I hope that through this way, I can express what I want to say.</p>
+                    <p>Thank you for being such an amazing person.</p>
+                </div>
+                
+                <!-- Music controls -->
+                <div class="music-controls">
+                    <button id="playPauseBtn" class="music-btn">🔊 Play Music</button>
+                    <button id="muteBtn" class="music-btn">🔇 Mute</button>
+                    <button id="galleryBtn" class="music-btn gallery-btn">📸 Visit Gallery of Memories</button>
+                </div>
+            </div>
+            
+            <div class="signature">
+                <p>With warm greetings,</p>
+                <p class="signature-name">-miguel ❤️</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Display current date
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
+        
+        // Music functionality
+        const audio = document.getElementById('birthdayMusic');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const muteBtn = document.getElementById('muteBtn');
+        const galleryBtn = document.getElementById('galleryBtn');
+        
+        // Gallery button functionality
+        galleryBtn.addEventListener('click', function() {
+            window.location.href = 'gallery.html';
+        });
+        
+        // Try to play music automatically (with user interaction requirement)
+        window.addEventListener('load', function() {
+            // Most browsers require user interaction first, so we'll wait for a click
+            document.body.addEventListener('click', function initAudio() {
+                audio.play().catch(e => {
+                    console.log('Auto-play prevented:', e);
+                    playPauseBtn.textContent = '▶️ Play Music';
+                });
+                document.body.removeEventListener('click', initAudio);
+            });
+        });
+        
+        // Play/Pause button
+        playPauseBtn.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.textContent = '⏸️ Pause Music';
+            } else {
+                audio.pause();
+                playPauseBtn.textContent = '▶️ Play Music';
+            }
+        });
+        
+        // Mute button
+        muteBtn.addEventListener('click', function() {
+            audio.muted = !audio.muted;
+            muteBtn.textContent = audio.muted ? '🔊 Unmute' : '🔇 Mute';
+        });
+        
+        // Update play button text when audio ends
+        audio.addEventListener('ended', function() {
+            playPauseBtn.textContent = '▶️ Play Music';
+        });
+        
+        // Auto-play when page loads (with fallback)
+        setTimeout(() => {
+            audio.play().catch(e => {
+                console.log('Auto-play failed, waiting for user interaction');
+                playPauseBtn.textContent = '▶️ Click to Play Music';
+            });
+        }, 1000);
+    </script>
+</body>
+</html>
